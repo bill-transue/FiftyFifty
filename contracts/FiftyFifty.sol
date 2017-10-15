@@ -13,7 +13,7 @@ contract FiftyFifty {
     raffleDuration = duration;
   }
 
-  function buyTicket {
+  function buyTicket() {
     require(now < (raffleStart + raffleDuration));
     tickets.push(msg.sender);
     pot.transfer(msg.value);
@@ -21,7 +21,8 @@ contract FiftyFifty {
 
   function end() {
     require(now >= (raffleStart + raffleDuration));
-    tickets[0].transfer(pot.value / 2);
-    beneficary.transfer(pot.value / 2);
+    // not really picking a winner here
+    tickets[0].transfer(pot.balance / 2); // half to the "winner"
+    beneficary.transfer(pot.balance); // half to the beneficary
   }
 }
