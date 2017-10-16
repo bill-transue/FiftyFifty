@@ -13,7 +13,7 @@ contract FiftyFifty {
     raffleDuration = duration;
   }
 
-  function buyTicket() {
+  function buyTicket() payable {
     require(now < (raffleStart + raffleDuration));
     tickets.push(msg.sender);
     pot.transfer(msg.value);
